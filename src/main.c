@@ -4,7 +4,7 @@
 #include <ddnet_demo.h>
 #include <ddnet_ghost/ghost.h>
 
-#define MAX_PLAYERS 64
+#define MAX_PLAYERS 128
 
 // Helper to convert Teeworlds' integer-based string format to a C string
 bool str_utf8_check(const char *str) {
