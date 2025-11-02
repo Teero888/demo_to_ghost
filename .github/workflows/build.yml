@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - name: Configure CMake
+      run: cmake -B build -S .
+    - name: Build
+      run: cmake --build build
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - name: Configure CMake
+      run: cmake -B build -S .
+    - name: Build
+      run: cmake --build build
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - name: Configure CMake
+      run: cmake -B build -S .
+    - name: Build
+      run: cmake --build build

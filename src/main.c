@@ -6,7 +6,6 @@
 
 #define MAX_PLAYERS 128
 
-// Helper to convert Teeworlds' integer-based string format to a C string
 bool str_utf8_check(const char *str) {
   const unsigned char *bytes = (const unsigned char *)str;
   while (*bytes) {
