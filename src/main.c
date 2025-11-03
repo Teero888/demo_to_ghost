@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
   }
 
   const char *demo_path = argv[1];
-  FILE *f_demo = fopen(demo_path, "rb");
+  FILE *f_demo = fopen(demo_path, "rb+");
   if (!f_demo) {
     perror("Error opening demo file");
     return 1;
