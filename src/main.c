@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
   }
 
   dd_demo_chunk chunk;
-  uint8_t snap_buf[DD_MAX_SNAPSHOT_SIZE];
+  uint8_t snap_buf[DD_SNAPSHOT_MAX_SIZE];
 
   printf("Processing demo...\n");
 
@@ -135,7 +135,7 @@ int main(int argc, char **argv) {
 
     const dd_snapshot *snap;
     if (chunk.type == DD_CHUNK_SNAP_DELTA) {
-      int size = demo_r_unpack_delta(dr, chunk.data, chunk.size, snap_buf);
+      int size = demo_r_unpack_delta(dr, chunk.data, snap_buf);
       if (size < 0) {
         fprintf(stderr, "Error unpacking delta snapshot.\n");
         continue;
