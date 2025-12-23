@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  const dd_demo_info *info = demo_r_get_info(dr);
+  dd_demo_info *info = demo_r_get_info(dr);
   printf("Opened demo: %s\n", demo_path);
   printf("  Map: %s\n", info->header.map_name);
   printf("  Length: %ds\n", info->length);
@@ -210,17 +210,17 @@ int main(int argc, char **argv) {
         sprintf(crc_str, "%08x", info->map_crc);
       }
 
-      char filename[256];
-      snprintf(filename, sizeof(filename), "%s_%s_%.3f_%s_%s.gho",
-               info->header.map_name, players[i].name, finish_time_ms / 1000.0f,
-               info->header.timestamp, crc_str);
-
       // Replace spaces in timestamp with dashes
-      for (char *p = filename; *p; ++p) {
+      for (char *p = info->header.timestamp; *p; ++p) {
         if (*p == ' ') {
           *p = '-';
         }
       }
+
+      char filename[256];
+      snprintf(filename, sizeof(filename), "%s_%s_%.3f_%s_%s.gho",
+               info->header.map_name, players[i].name, finish_time_ms / 1000.0f,
+               info->header.timestamp, crc_str);
 
       if (ghost_save(players[i].ghost, filename) == 0) {
         printf("Saved ghost for %s to %s\n", players[i].name, filename);
